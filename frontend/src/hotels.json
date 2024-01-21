@@ -1,0 +1,114 @@
+[
+  {
+    "userId": "user123",
+    "name": "Luxury Resort",
+    "city": "Miami",
+    "country": "USA",
+    "description": "A luxurious resort by the beach",
+    "type": "Resort",
+    "adultCount": 2,
+    "childCount": 1,
+    "facilities": ["Swimming Pool", "Spa", "Restaurant"],
+    "pricePerNight": 300,
+    "starRating": 5,
+    "imageUrls": [
+      "https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+    ],
+    "lastUpdated": "2024-01-25T12:00:00Z",
+    "bookings": []
+  },
+  {
+    "userId": "user456",
+    "name": "City Hotel",
+    "city": "New York",
+    "country": "USA",
+    "description": "A modern hotel in the heart of the city",
+    "type": "Hotel",
+    "adultCount": 2,
+    "childCount": 0,
+    "facilities": ["Gym", "Conference Rooms", "WiFi"],
+    "pricePerNight": 200,
+    "starRating": 4,
+    "imageUrls": [
+      "https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+    ],
+    "lastUpdated": "2024-01-25T12:30:00Z",
+    "bookings": []
+  },
+  {
+    "userId": "user789",
+    "name": "Mountain Lodge",
+    "city": "Aspen",
+    "country": "USA",
+    "description": "A cozy lodge in the mountains",
+    "type": "Lodge",
+    "adultCount": 4,
+    "childCount": 2,
+    "facilities": ["Fireplace", "Hiking Trails", "Bar"],
+    "pricePerNight": 150,
+    "starRating": 3,
+    "imageUrls": [
+      "https://images.pexels.com/photos/2467285/pexels-photo-2467285.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+    ],
+    "lastUpdated": "2024-01-25T13:00:00Z",
+    "bookings": []
+  },
+  {
+    "userId": "user101",
+    "name": "Beachfront Bungalow",
+    "city": "Phuket",
+    "country": "Thailand",
+    "description": "A charming bungalow with a view of the ocean",
+    "type": "Bungalow",
+    "adultCount": 2,
+    "childCount": 1,
+    "facilities": [
+      "Private Beach Access",
+      "Outdoor Shower",
+      "Seafood Restaurant"
+    ],
+    "pricePerNight": 250,
+    "starRating": 4,
+    "imageUrls": [
+      "https://images.pexels.com/photos/271643/pexels-photo-271643.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+    ],
+    "lastUpdated": "2024-01-25T13:30:00Z",
+    "bookings": []
+  },
+  {
+    "userId": "user123",
+    "name": "Luxury Resort",
+    "city": "Miami",
+    "country": "USA",
+    "description": "A luxurious resort by the beach",
+    "type": "Resort",
+    "adultCount": 2,
+    "childCount": 1,
+    "facilities": ["Swimming Pool", "Spa", "Restaurant"],
+    "pricePerNight": 300,
+    "starRating": 5,
+    "imageUrls": [
+      "https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+    ],
+    "lastUpdated": "2024-01-25T12:00:00Z",
+    "bookings": []
+  },
+  {
+    "userId": "user456",
+    "name": "City Hotel",
+    "city": "New York",
+    "country": "USA",
+    "description": "A modern hotel in the heart of the city",
+    "type": "Hotel",
+    "adultCount": 2,
+    "childCount": 0,
+    "facilities": ["Gym", "Conference Rooms", "WiFi"],
+    "pricePerNight": 200,
+    "starRating": 4,
+    "imageUrls": [
+      "https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+    ],
+    "lastUpdated": "2024-01-25T12:30:00Z",
+    "bookings": []
+  }
+]

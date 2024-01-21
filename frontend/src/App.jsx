@@ -5,6 +5,7 @@ import Signup from "./pages/Signup";
 import MyHotels from "./pages/MyHotels";
 import MyBookings from "./pages/MyBookings";
 import User from "./pages/User";
+import Home from "./pages/Home";
 
 const App = () => {
   const router = createBrowserRouter([
@@ -13,8 +14,12 @@ const App = () => {
       element: <AppLayout />,
       children: [
         {
-          path: "/",
+          path: "/login",
           element: <Login />,
+        },
+        {
+          path: "/",
+          element: <Home />,
         },
         {
           path: "signup",

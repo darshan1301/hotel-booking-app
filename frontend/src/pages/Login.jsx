@@ -18,14 +18,14 @@ const Login = () => {
           <div className="mb-4">
             <label
               htmlFor="username"
-              className="block text-sm font-medium text-gray-600"
+              className="block text-sm font-medium text-stone-600"
             >
               Username
             </label>
             <input
               type="text"
               id="username"
-              className="mt-1 w-full rounded-md border p-2"
+              className="mt-1 w-full rounded-lg border px-2 py-2 text-sm"
               placeholder="Enter your username"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
@@ -34,14 +34,14 @@ const Login = () => {
           <div className="mb-4">
             <label
               htmlFor="password"
-              className="block text-sm font-medium text-gray-600"
+              className="block text-sm font-medium text-stone-600"
             >
               Password
             </label>
             <input
               type="password"
               id="password"
-              className="mt-1 w-full rounded-md border p-2"
+              className="mt-1 w-full rounded-lg border px-2 py-2 text-sm"
               placeholder="Enter your password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -49,7 +49,7 @@ const Login = () => {
           </div>
           <button
             type="button"
-            className="rounded-md bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
+            className="rounded-md bg-stone-600 px-4 py-2 text-white hover:bg-stone-700"
             onClick={handleLogin}
           >
             Login

@@ -2,11 +2,11 @@ import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
   return (
-    <div className="container mx-auto flex items-center justify-between bg-stone-100">
+    <div className="mx-auto flex items-center justify-between px-4 py-3">
       <div className="flex items-center">
-        <img src="../../public/airbnb.png" alt="Logo" className="mr-2 h-8" />
+        <img src="../../airbnb.png" alt="Logo" className="mr-2 h-8" />
 
-        <span className="text-lg font-semibold text-red-400">airbnb</span>
+        <span className="text-lg font-semibold text-red-500">nodenest</span>
       </div>
 
       <div>
