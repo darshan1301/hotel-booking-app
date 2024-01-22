@@ -6,6 +6,8 @@ import MyHotels from "./pages/MyHotels";
 import MyBookings from "./pages/MyBookings";
 import User from "./pages/User";
 import Home from "./pages/Home";
+import HotelDetails from "./pages/HotelDetails";
+import EditHotel from "./pages/EditHotel";
 
 const App = () => {
   const router = createBrowserRouter([
@@ -14,28 +16,36 @@ const App = () => {
       element: <AppLayout />,
       children: [
         {
-          path: "/login",
-          element: <Login />,
-        },
-        {
           path: "/",
           element: <Home />,
         },
         {
-          path: "signup",
+          path: "/login",
+          element: <Login />,
+        },
+        {
+          path: "/signup",
           element: <Signup />,
         },
         {
-          path: "myHotels",
+          path: "/myHotels",
           element: <MyHotels />,
         },
         {
-          path: "myBookings",
+          path: "/myBookings",
           element: <MyBookings />,
         },
         {
           path: "/user",
           element: <User />,
+        },
+        {
+          path: "/hotel/:hotelId",
+          element: <HotelDetails />,
+        },
+        {
+          path: "/edit-hotel/:hotelId",
+          element: <EditHotel />,
         },
       ],
     },

@@ -22,7 +22,7 @@ const SearchBar = () => {
           placeholder="where are you going?"
           required
           autoComplete="off"
-          className="input rounded-full border px-2 py-1 text-xs"
+          className="input rounded-full border px-2 py-2 text-xs"
         />
       </div>
       <div className="grow py-1">

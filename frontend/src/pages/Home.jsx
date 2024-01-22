@@ -2,11 +2,10 @@ import HotelCard from "../components/HotelCard";
 import SearchBar from "../components/SearchBar";
 import hotels from "../hotels.json";
 const Home = () => {
-  console.log(hotels[1]);
   return (
     <div>
       <SearchBar />
-      <div className="mx-3 sm:flex sm:flex-wrap ">
+      <div className="mx-3 sm:mx-auto sm:flex sm:flex-wrap">
         {hotels.map((item) => (
           <HotelCard
             imageUrls={item.imageUrls[0]}

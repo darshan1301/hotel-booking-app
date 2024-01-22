@@ -1,0 +1,24 @@
+[
+  {
+    "firstName": "John",
+    "lastName": "Doe",
+    "email": "john.doe@example.com",
+    "adultCount": 2,
+    "childCount": 1,
+    "checkIn": "2024-02-01T12:00:00Z",
+    "checkOut": "2024-02-05T10:00:00Z",
+    "userId": "user123",
+    "totalCost": 500.0
+  },
+  {
+    "firstName": "Alice",
+    "lastName": "Smith",
+    "email": "alice.smith@example.com",
+    "adultCount": 1,
+    "childCount": 0,
+    "checkIn": "2024-03-10T14:00:00Z",
+    "checkOut": "2024-03-15T11:00:00Z",
+    "userId": "user456",
+    "totalCost": 350.5
+  }
+]

@@ -76,11 +76,11 @@
     "bookings": []
   },
   {
-    "userId": "user123",
+    "userId": "user1234",
     "name": "Luxury Resort",
     "city": "Miami",
     "country": "USA",
-    "description": "A luxurious resort by the beach",
+    "description": "A luxurious resort by the beach..",
     "type": "Resort",
     "adultCount": 2,
     "childCount": 1,
@@ -94,11 +94,11 @@
     "bookings": []
   },
   {
-    "userId": "user456",
+    "userId": "user4567",
     "name": "City Hotel",
     "city": "New York",
     "country": "USA",
-    "description": "A modern hotel in the heart of the city",
+    "description": "A modern hotel in the heart of the city..",
     "type": "Hotel",
     "adultCount": 2,
     "childCount": 0,
