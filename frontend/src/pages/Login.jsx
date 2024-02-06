@@ -1,46 +1,58 @@
 import { useState } from "react";
-import { Link } from "react-router-dom"; // Assuming you're using React Router for navigation
+import { Link, useNavigate } from "react-router-dom"; // Assuming you're using React Router for navigation
+import { loginHandler } from "../services/user.services";
+import { useAuth } from "../contexts/AuthContext";
+import Error from "../ui/Error";
+import { usePopupMessage } from "../contexts/PopupMessageContext";
 
 const Login = () => {
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+  const { setToken } = useAuth();
+  const { displayPopupMessage } = usePopupMessage();
 
-  const handleLogin = () => {
+  const handleLogin = async (e) => {
+    e.preventDefault();
     // Your login logic goes here
-    console.log("Logging in:", username, password);
+    try {
+      const res = await loginHandler(email, password);
+      if (res.ok) {
+        const { token } = await res.json();
+        // console.log(token);
+        setToken(token);
+        displayPopupMessage("Logged In!");
+        navigate(-1);
+      }
+    } catch (error) {
+      console.log(error);
+      return <Error />;
+    }
   };
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-gray-100">
       <div className="my-auto w-96 rounded bg-white p-8 shadow-md">
         <h2 className="mb-6 text-2xl font-semibold">Login</h2>
-        <form>
+        <form onSubmit={handleLogin}>
           <div className="mb-4">
-            <label
-              htmlFor="username"
-              className="block text-sm font-medium text-stone-600"
-            >
-              Username
+            <label className="block text-sm font-medium text-stone-600">
+              Email
             </label>
             <input
               type="text"
-              id="username"
               className="mt-1 w-full rounded-lg border px-2 py-2 text-sm"
               placeholder="Enter your username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
           <div className="mb-4">
-            <label
-              htmlFor="password"
-              className="block text-sm font-medium text-stone-600"
-            >
+            <label className="block text-sm font-medium text-stone-600">
               Password
             </label>
             <input
               type="password"
-              id="password"
               className="mt-1 w-full rounded-lg border px-2 py-2 text-sm"
               placeholder="Enter your password"
               value={password}
@@ -48,9 +60,8 @@ const Login = () => {
             />
           </div>
           <button
-            type="button"
+            type="submit"
             className="rounded-md bg-stone-600 px-4 py-2 text-white hover:bg-stone-700"
-            onClick={handleLogin}
           >
             Login
           </button>

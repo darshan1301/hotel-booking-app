@@ -1,45 +1,28 @@
 import Facilities from "../components/Facilities";
 import StarRating from "../components/StarRating";
+import { useLoaderData } from "react-router-dom";
+import { getHotelDetails } from "../services/hotel.services";
+import ReserveScreen from "../components/ReserveScreen";
 
 const HotelDetails = () => {
-  const hotel = {
-    userId: "user123",
-    name: "Luxury Resort",
-    city: "Miami",
-    country: "USA",
-    description: "A luxurious resort by the beach",
-    type: "Resort",
-    adultCount: 2,
-    childCount: 1,
-    facilities: [
-      "Swimming Pool",
-      "Spa",
-      "Restaurant",
-      "wifi",
-      "parking",
-      "Kitchen",
-    ],
-    pricePerNight: 300,
-    starRating: 4,
-    imageUrls: [
-      "https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    ],
-    lastUpdated: "2024-01-25T12:00:00Z",
-    bookings: [],
-  };
+  const hotel = useLoaderData();
+
   return (
     <div>
       <div className=" h-1/4">
         <img
           src={hotel.imageUrls[0]}
           alt={hotel.name}
-          className="h-full w-full object-cover"
+          className="h-72 w-full object-cover md:h-96 "
         />
       </div>
-      <div className="px-2 py-3">
-        <p className="py-2 font-sans text-3xl font-medium text-stone-800">
+      <div className="px-4 pt-4">
+        <p className="font-sans text-3xl font-medium text-stone-800">
           {hotel.description}
         </p>
+        {/* <p className="font-sans text-xl font-normal text-stone-400">
+          ${hotel.pricePerNight} Per Night
+        </p> */}
         <p className="py-1 font-sans text-base font-medium tracking-wide text-stone-800">
           {hotel.name}
         </p>
@@ -49,8 +32,8 @@ const HotelDetails = () => {
         <p className="pb-1 font-sans text-base font-light tracking-wide text-stone-800">
           {hotel.type} for{" "}
           {hotel.adultCount > 1
-            ? `${hotel.adultCount} guests`
-            : `${hotel.adultCount} guest`}{" "}
+            ? `${hotel.adultCount} adults`
+            : `${hotel.adultCount} adult`}{" "}
           and
           {hotel.childCount > 1
             ? ` ${hotel.childCount} kids`
@@ -59,8 +42,14 @@ const HotelDetails = () => {
         <StarRating rating={hotel.starRating} />
         <Facilities facilities={hotel.facilities} />
       </div>
+      <ReserveScreen hotel={hotel} />
     </div>
   );
 };
+
+export async function loader({ params }) {
+  const data = await getHotelDetails(params.hotelId);
+  return data;
+}
 
 export default HotelDetails;

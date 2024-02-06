@@ -1,29 +1,33 @@
+/* eslint-disable react/prop-types */
 import { useNavigate } from "react-router-dom";
+import StarRating from "./StarRating";
 
-// eslint-disable-next-line react/prop-types
-const HotelCard = ({ imageUrls, name, city, country, type, pricePerNight }) => {
+const HotelCard = ({ hotel }) => {
   const navigate = useNavigate();
+
+  const onHotel = () => navigate(`/hotel/${hotel._id}`);
   return (
     <div
-      onClick={() => navigate(`/hotel/xyz`)}
-      className="mx-1 my-2 overflow-hidden rounded-lg bg-white shadow-md sm:h-auto sm:w-[16rem] sm:flex-shrink-0"
+      onClick={onHotel}
+      className="mx-2 mt-4 overflow-hidden rounded-lg bg-white shadow sm:h-auto sm:w-[16rem] sm:flex-shrink-0"
     >
-      <div className="h-48">
+      <div className="h-60 md:h-48">
         <img
-          src={imageUrls}
-          alt={name}
+          src={hotel.imageUrls[0]}
+          alt={hotel.name}
           className="h-full w-full object-cover"
         />
       </div>
-      <div className="mb-2 px-2 py-1">
+      <div className="mb-2 flex flex-col px-2 py-1">
         <p className="mb-1 text-xs font-medium text-stone-800">
-          {city}, {country}
+          {hotel.city}, {hotel.country}
         </p>
-        <p className="mb-1 text-xs font-light text-stone-500">{type}</p>
+        <p className="mb-1 text-xs font-light text-stone-500">{hotel.type}</p>
         <p className="text-xs font-medium text-stone-800">
-          ${pricePerNight}{" "}
+          ${hotel.pricePerNight}{" "}
           <span className="text-xs font-light text-stone-500">night</span>
         </p>
+        <StarRating rating={hotel.starRating} />
       </div>
     </div>
   );

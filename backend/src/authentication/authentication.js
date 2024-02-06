@@ -8,7 +8,7 @@ const ROLE = {
 const verifyToken = (req, res, next) => {
   let token;
   const authHeader = req.headers.authorization;
-  if (authHeader && authHeader.startsWith("Beare ")) {
+  if (authHeader && authHeader.startsWith("Bearer ")) {
     token = authHeader.split(" ")[1];
   }
 
@@ -26,7 +26,6 @@ const verifyToken = (req, res, next) => {
     req.user = {
       userId: decoded.userId,
       email: decoded.email,
-      role: decoded.role,
     };
     next();
   });
@@ -34,7 +33,7 @@ const verifyToken = (req, res, next) => {
 
 function authRole(role) {
   return (req, res, next) => {
-    if (req.user.admin !== role) {
+    if (req.user.role !== role) {
       return res.status(401).json({ message: "Not allowed" });
     }
     next();

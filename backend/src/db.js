@@ -1,10 +1,9 @@
 const mongoose = require("mongoose");
+require("dotenv").config();
 
 async function connectMongoDB() {
   try {
-    await mongoose.connect(
-      process.env.DATABASE_URL || "mongodb://127.0.0.1:27017/bookingApp"
-    );
+    await mongoose.connect(process.env.DATABASE_URL);
     console.log("Connected to mongoDB.");
   } catch (err) {
     console.error("Database connection error:", err);
