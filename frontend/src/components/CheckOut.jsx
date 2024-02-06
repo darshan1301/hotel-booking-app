@@ -19,7 +19,7 @@ const Checkout = ({ hotel, cancelForm, paymentIntent, confirmBooking }) => {
         },
       });
 
-      console.log(res);
+      // console.log(res);
 
       if (res.paymentIntent?.status === "succeeded") {
         confirmBooking({

@@ -9,10 +9,11 @@ const Navbar = ({ toggleDropdown, isDropdownOpen, dropdownRef }) => {
   const handleLogout = () => {
     clearToken();
     toggleDropdown();
+    navigate("/");
   };
 
   return (
-    <div className=" mx-auto flex items-center justify-between px-4 py-3 shadow">
+    <div className=" mx-auto flex items-center justify-between px-4 py-3 shadow md:px-10 lg:px-28">
       <div className="flex items-center" onClick={() => navigate("/")}>
         <img src="../../airbnb.png" alt="Logo" className="mr-2 h-8" />
 

@@ -40,7 +40,7 @@ const ReserveScreen = ({ hotel }) => {
         const data = await res.json();
         setPaymentIntent(data);
 
-        console.log(data);
+        // console.log(data);
       }
     } catch (error) {
       console.error(error.message);
@@ -62,7 +62,7 @@ const ReserveScreen = ({ hotel }) => {
     };
     try {
       const res = await createMyBooking(headers, hotel._id, body);
-      console.log(res);
+      // console.log(res);
       if (res.ok) {
         displayPopupMessage("Success!");
         setOpenCheckoutForm(false);
@@ -96,7 +96,7 @@ const ReserveScreen = ({ hotel }) => {
   };
 
   return (
-    <div className="m-4 flex flex-col items-center justify-center space-y-2 divide-y rounded-lg border border-stone-400 py-4">
+    <div className="m-4 flex flex-col items-center justify-center space-y-2 divide-y rounded-lg border border-stone-400 py-4 lg:mx-16">
       {openCheckoutForm && (
         <Elements
           stripe={stripePromise}
@@ -139,7 +139,7 @@ const ReserveScreen = ({ hotel }) => {
           rangeColors={["black"]}
         />
       </div>
-      <div className="flex w-full items-center justify-between px-8 pt-4">
+      <div className="flex w-full items-center justify-between px-8 pt-4 md:px-40 lg:px-40">
         <p className="text-lg font-medium">Total: ${getTotalPrice()}</p>
         <button
           onClick={onReserve}

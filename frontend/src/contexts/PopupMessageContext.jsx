@@ -1,10 +1,8 @@
-/* eslint-disable react/prop-types */
 import { useState, useContext, createContext } from "react";
 
 const PopupMessageContext = createContext();
 
 export const PopupMessageProvider = ({ children }) => {
-  // const [isVisible, setIsVisible] = useState(true);
   const [popupMessage, setPopupMessage] = useState("");
   const [color, setColor] = useState(true);
 

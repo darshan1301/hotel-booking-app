@@ -35,11 +35,10 @@ const getMyBookings = async (req, res) => {
 };
 
 const createPaymentIntent = async (req, res) => {
-  console.log("CREATE PAYMENT INTENT");
+  // console.log("CREATE PAYMENT INTENT");
   const hotelId = req.params.hotelId;
   const userId = req.user.userId;
   const { dateRange } = req.body;
-  console.log(dateRange);
 
   const getTotalNights = (dateRanges) => {
     if (dateRanges.length === 0) {
@@ -107,7 +106,7 @@ const addMyBooking = async (req, res) => {
   const hotelId = req.params.hotelId;
   const { userId, email } = req.user;
   const bookingData = req.body;
-  console.log(req.body);
+  // console.log(req.body);
   try {
     const paymentIntentId = bookingData.paymentIntent.paymentIntentId;
     const paymentIntent = await stripe.paymentIntents.retrieve(

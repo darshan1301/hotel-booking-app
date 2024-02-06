@@ -8,15 +8,15 @@ const HotelDetails = () => {
   const hotel = useLoaderData();
 
   return (
-    <div>
-      <div className=" h-1/4">
+    <div className="lg:mx-20">
+      <div className="h-1/4 md:m-8 md:rounded-2xl lg:m-14 ">
         <img
           src={hotel.imageUrls[0]}
           alt={hotel.name}
-          className="h-72 w-full object-cover md:h-96 "
+          className="h-72 w-full object-cover md:h-96 md:rounded-2xl lg:h-[25rem]"
         />
       </div>
-      <div className="px-4 pt-4">
+      <div className="px-4 pt-4 lg:mx-12">
         <p className="font-sans text-3xl font-medium text-stone-800">
           {hotel.description}
         </p>
@@ -42,7 +42,7 @@ const HotelDetails = () => {
         <StarRating rating={hotel.starRating} />
         <Facilities facilities={hotel.facilities} />
       </div>
-      <ReserveScreen hotel={hotel} />
+      <ReserveScreen hotel={hotel} className="lg:mx-20" />
     </div>
   );
 };

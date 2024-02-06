@@ -1,13 +1,24 @@
 const mongoose = require("mongoose");
 const Hotel = require("./../models/hotelModel");
+const NodeCache = require("node-cache");
+
+const nodeCache = new NodeCache({
+  stdTTL: 60 * 60 * 24,
+});
 
 const getHotels = async (req, res) => {
-  try {
-    const data = await Hotel.find().sort({ lastUpdated: -1 });
-    res.status(200).json({ data });
-  } catch (error) {
-    console.log(error);
-    res.status(404).json({ message: "No hotels found" });
+  let hotels;
+  if (nodeCache.has("hotels")) {
+    return res.status(200).json({ data: JSON.parse(nodeCache.get("hotels")) });
+  } else {
+    try {
+      const data = await Hotel.find().sort({ lastUpdated: -1 });
+      nodeCache.set("hotels", JSON.stringify(data));
+      res.status(200).json({ data });
+    } catch (error) {
+      console.log(error);
+      res.status(404).json({ message: "No hotels found" });
+    }
   }
 };
 
@@ -23,8 +34,8 @@ const getHotelDetails = async (req, res) => {
 };
 
 const getSearchHotels = async (req, res) => {
-  console.log("GET SEARCH HOTELS");
-  console.log(req.query);
+  // console.log("GET SEARCH HOTELS");
+  // console.log(req.query);
   const query = queryConstructor(req.query);
   // console.log(query);
   try {

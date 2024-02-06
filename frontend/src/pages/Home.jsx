@@ -19,7 +19,7 @@ const Home = () => {
   return (
     <div>
       <SearchBar handleSetHotels={handleSetHotels} allHotels={data} />
-      <div className="sm: mx-3 grid-cols-2 sm:mx-auto sm:flex sm:flex-wrap sm:justify-center md:grid-cols-4 md:justify-center">
+      <div className=" mx-3 grid-cols-2 sm:mx-auto sm:flex sm:flex-wrap sm:justify-center md:grid-cols-4 md:justify-center lg:mx-14">
         {hotels.map((item) => (
           <HotelCard key={item._id} hotel={item} />
         ))}

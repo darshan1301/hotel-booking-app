@@ -5,6 +5,11 @@ const {
   extractPublicIds,
 } = require("../utils/cloudinary");
 const mongoose = require("mongoose");
+const NodeCache = require("node-cache");
+
+const nodeCache = new NodeCache({
+  stdTTL: 60 * 60 * 24,
+});
 
 function capitalizeString(str) {
   return str.charAt(0).toUpperCase() + str.slice(1);
@@ -39,6 +44,8 @@ const addMyHotel = async (req, res) => {
     });
 
     const data = await newHotel.save();
+
+    nodeCache.del("hotels");
 
     res.status(200).json({ data });
   } catch (error) {
@@ -102,7 +109,7 @@ const updateMyHotel = async (req, res) => {
       console.log("Hotel not found.");
       return res.status(404).json({ message: "Hotel not found." });
     }
-
+    nodeCache.del("hotels");
     console.log(`Hotel updated: ${hotel.name}`);
     res.status(200).json({ hotel, message: "Hotel updated successfully." });
   } catch (error) {
@@ -124,6 +131,7 @@ const deleteMyHotel = async (req, res) => {
     const publicIds = extractPublicIds(deletedHotel.imageUrls);
     deleteArrayOfImagesFromCloudinary(publicIds);
     // console.log(deletedHotel);
+    nodeCache.del("hotels");
     res.status(200).json({ message: "Successfully deleted hotel." });
   } catch (error) {
     res.status(404).json({

@@ -9,7 +9,7 @@ const HotelCard = ({ hotel }) => {
   return (
     <div
       onClick={onHotel}
-      className="mx-2 mt-4 overflow-hidden rounded-lg bg-white shadow sm:h-auto sm:w-[16rem] sm:flex-shrink-0"
+      className="mx-2 mt-4 overflow-hidden rounded-lg bg-white shadow sm:mx-4 sm:mt-8 sm:h-auto sm:w-[18rem] sm:flex-shrink-0 md:mx-4 md:mt-8 md:h-auto md:w-[20rem] md:rounded-2xl"
     >
       <div className="h-60 md:h-48">
         <img
