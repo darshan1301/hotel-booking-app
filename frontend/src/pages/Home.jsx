@@ -30,6 +30,7 @@ const Home = () => {
 
 export async function loader() {
   const data = await getAllHotels();
+  console.log(data);
   return data.data;
 }
 
