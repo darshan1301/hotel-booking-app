@@ -19,7 +19,7 @@ const Home = () => {
   return (
     <div>
       <SearchBar handleSetHotels={handleSetHotels} allHotels={data} />
-      <div className=" mx-3 grid-cols-2 sm:mx-auto sm:flex sm:flex-wrap sm:justify-center md:grid-cols-4 md:justify-center lg:mx-14">
+      <div className="mx-3 grid-cols-2 sm:mx-auto sm:flex sm:flex-wrap sm:justify-center md:mb-6 md:grid-cols-4 md:justify-center lg:mx-14 lg:mb-10">
         {hotels.map((item) => (
           <HotelCard key={item._id} hotel={item} />
         ))}
@@ -30,7 +30,7 @@ const Home = () => {
 
 export async function loader() {
   const data = await getAllHotels();
-  console.log(data);
+  // console.log(data);
   return data.data;
 }
 

@@ -3,7 +3,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
 const userSignup = async (req, res) => {
-  console.log(req.body);
+  // console.log(req.body);
   const { firstName, lastName, email, password } = req.body;
   try {
     const existingUser = await User.findOne({ email });
@@ -70,7 +70,7 @@ const userLogin = async (req, res) => {
 
     res.status(200).json({ token, message: "Login successful" });
   } catch (error) {
-    console.error("Error during user login:", error);
+    console.error("Error during user login:", error.message);
   }
 };
 

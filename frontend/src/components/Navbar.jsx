@@ -1,14 +1,17 @@
 /* eslint-disable react/prop-types */
 import { NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
+import { usePopupMessage } from "../contexts/PopupMessageContext";
 
 const Navbar = ({ toggleDropdown, isDropdownOpen, dropdownRef }) => {
   const navigate = useNavigate();
   const { jwtToken, clearToken } = useAuth();
+  const { displayPopupMessage } = usePopupMessage();
 
   const handleLogout = () => {
     clearToken();
     toggleDropdown();
+    displayPopupMessage("Looged out!");
     navigate("/");
   };
 
@@ -67,7 +70,7 @@ const Navbar = ({ toggleDropdown, isDropdownOpen, dropdownRef }) => {
                       <p
                         onClick={handleLogout}
                         type="button"
-                        className="block px-4 py-2 text-sm text-red-600 hover:bg-gray-100"
+                        className="block cursor-pointer px-4 py-2 text-sm text-red-600 hover:bg-gray-100"
                       >
                         Logout
                       </p>

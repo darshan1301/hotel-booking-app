@@ -96,7 +96,7 @@ const ReserveScreen = ({ hotel }) => {
   };
 
   return (
-    <div className="m-4 flex flex-col items-center justify-center space-y-2 divide-y rounded-lg border border-stone-400 py-4 lg:mx-16">
+    <div className=" m-4 flex flex-col items-center justify-center space-y-2 divide-y rounded-lg border border-stone-400 py-4">
       {openCheckoutForm && (
         <Elements
           stripe={stripePromise}
@@ -110,7 +110,7 @@ const ReserveScreen = ({ hotel }) => {
           />
         </Elements>
       )}
-      <div className="grow py-1">
+      <div className="grow py-1 ">
         <label className="px-2 text-sm">Adults:</label>
         <input
           onChange={(e) => setAdultCount(e.target.value)}
@@ -139,7 +139,7 @@ const ReserveScreen = ({ hotel }) => {
           rangeColors={["black"]}
         />
       </div>
-      <div className="flex w-full items-center justify-between px-8 pt-4 md:px-40 lg:px-40">
+      <div className="flex w-full items-center justify-between px-8 pt-4 ">
         <p className="text-lg font-medium">Total: ${getTotalPrice()}</p>
         <button
           onClick={onReserve}

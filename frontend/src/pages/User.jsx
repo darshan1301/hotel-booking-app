@@ -16,12 +16,13 @@ const User = () => {
   if (!user)
     return (
       <>
-        <p>
+        <p className="flex justify-center">Please login first!</p>
+        <p className="flex justify-center">
           <Link className="text-blue-500 hover:text-blue-700" to="/signup">
             Signup
           </Link>
         </p>
-        <p>
+        <p className="flex justify-center">
           <Link className="text-blue-500 hover:text-blue-700" to="/login">
             login
           </Link>

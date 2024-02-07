@@ -1,20 +1,25 @@
 import base_url from "../base_url";
 
+function removeSpacesFromEmail(email) {
+  const cleanedEmail = email.replace(/\s/g, "");
+  return cleanedEmail;
+}
+
 ////////// USER LOGIN
 export const loginHandler = async (email, password) => {
+  const cleanedEmail = removeSpacesFromEmail(email);
   try {
     const response = await fetch(`${base_url}/user/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ email, password }),
+      body: JSON.stringify({ email: cleanedEmail, password }),
     });
 
-    // console.log(response);
     return response;
   } catch (error) {
-    console.error(error);
+    console.error(error.message);
     return null;
   }
 };

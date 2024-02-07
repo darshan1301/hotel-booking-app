@@ -3,29 +3,42 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import { signupHandler } from "../services/user.services";
 import Error from "../ui/Error";
+import { usePopupMessage } from "../contexts/PopupMessageContext";
 
 const Signup = () => {
   const [firstName, setFname] = useState("");
   const [lastName, setLname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const { setToken } = useAuth();
+  const { displayPopupMessage } = usePopupMessage();
 
   const handleSignup = async (e) => {
+    setIsLoading(true);
     e.preventDefault();
+    if (!email && !firstName && !lastName && !password) {
+      displayPopupMessage("fill in the appropriate info", "red");
+      return;
+    }
     try {
       const res = await signupHandler({ firstName, lastName, email, password });
-      const data = await res.json();
       if (res.ok) {
-        console.log(data);
-        setToken(res);
+        const data = await res.json();
+        console.log(data.token);
+        displayPopupMessage("Signed In!");
+        setToken(data.token);
         navigate("/");
+      } else {
+        const data = await res.json();
+        displayPopupMessage(data.message, "red");
       }
-      window.alert(data.message);
     } catch (error) {
       console.log(error);
       return <Error />;
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -92,9 +105,10 @@ const Signup = () => {
           </div>
           <button
             type="submit"
+            disabled={isLoading}
             className="rounded-md bg-red-500 px-4 py-2 text-white transition-all hover:scale-110 hover:bg-red-600"
           >
-            Signup
+            {!isLoading ? "Signup" : "...Signing up!"}
           </button>
           <div className="mt-4 text-center">
             <span className="text-gray-600">Already have an account?</span>

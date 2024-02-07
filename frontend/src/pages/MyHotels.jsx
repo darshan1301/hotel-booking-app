@@ -41,7 +41,7 @@ const MyHotels = () => {
   };
 
   return (
-    <div>
+    <div className="md:mx-10 lg:mx-20">
       <HeaderBar>
         <BackBtn to={-1} />
         <AddHotelBtn />

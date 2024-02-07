@@ -11,7 +11,6 @@ import EditHotel from "./pages/EditHotel";
 import AddHotel from "./pages/AddHotel";
 import { loader as hotelLoader } from "./pages/HotelDetails";
 import { loader as allHotelsLoader } from "./pages/Home";
-// import SearchHotels from "./pages/SearchHotels";
 import { loader as myHotelsLoader } from "./pages/MyHotels";
 import Error from "./ui/Error";
 import { loader as userLoader } from "./pages/User";
@@ -32,10 +31,12 @@ const App = () => {
         {
           path: "/login",
           element: <Login />,
+          errorElement: <Error />,
         },
         {
           path: "/signup",
           element: <Signup />,
+          errorElement: <Error />,
         },
         {
           path: "/myHotels",
