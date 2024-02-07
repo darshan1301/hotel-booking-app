@@ -6,10 +6,15 @@ import HeaderBar from "../ui/HeaderBar";
 const MyBookings = () => {
   const myBookings = useLoaderData();
 
-  if (!myBookings) return <p>No Bookings Found!</p>;
+  if (!myBookings)
+    return (
+      <div className="m-10 flex justify-center">
+        <p>No Bookings Found!</p>
+      </div>
+    );
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 md:mx-10 lg:mx-20">
       <HeaderBar>
         <BackBtn to={-1} />
         <h1 className="px-4 text-2xl font-bold uppercase text-stone-500">
@@ -19,12 +24,12 @@ const MyBookings = () => {
       {myBookings.map((hotel) => (
         <div
           key={hotel._id}
-          className="grid grid-cols-1 gap-5  border-t p-8 lg:grid-cols-[1fr_3fr]"
+          className="mx-6 grid grid-cols-1 gap-5 border-t-2 py-4 lg:grid-cols-[1fr_3fr] lg:py-4"
         >
-          <div className="lg:h-[250px] lg:w-full">
+          <div className=" lg:h-[250px] lg:w-full">
             <img
               src={hotel.imageUrls[0]}
-              className="h-full w-full object-cover object-center"
+              className="h-full w-full rounded-lg object-cover object-center"
             />
           </div>
           <div className="flex max-h-[300px] flex-col gap-4 overflow-y-auto">
@@ -66,7 +71,7 @@ export const loader = async () => {
   };
   const res = await getMyBookings(headers);
   // console.log(res);
-  if (res) return res;
+  if (res.length > 0) return res;
   return null;
 };
 

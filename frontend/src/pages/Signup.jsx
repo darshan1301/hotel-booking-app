@@ -26,7 +26,6 @@ const Signup = () => {
       const res = await signupHandler({ firstName, lastName, email, password });
       if (res.ok) {
         const data = await res.json();
-        console.log(data.token);
         displayPopupMessage("Signed In!");
         setToken(data.token);
         navigate("/");
