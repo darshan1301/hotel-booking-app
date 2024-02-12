@@ -4,6 +4,7 @@ const {
   getMyBookings,
   addMyBooking,
   createPaymentIntent,
+  cancelBooking,
 } = require("../controllers/myBookingsController");
 
 const router = express.Router();
@@ -11,7 +12,6 @@ const router = express.Router();
 router.get("/", isAuthenticated, getMyBookings);
 router.post("/:hotelId/payment-intent", isAuthenticated, createPaymentIntent);
 router.post("/create-booking/:hotelId/", isAuthenticated, addMyBooking);
-// router.delete("/:bookingId", cancelBooking)
-// router.post("/", isAuthenticated);
+router.put("/:hotelId/:bookingId", isAuthenticated, cancelBooking);
 
 module.exports = router;

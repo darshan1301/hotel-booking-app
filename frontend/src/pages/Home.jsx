@@ -1,12 +1,15 @@
-import { useLoaderData } from "react-router-dom";
 import HotelCard from "../components/HotelCard";
 import { getAllHotels } from "../services/hotel.services";
-import { useState } from "react";
 import SearchBar from "../components/SearchBar";
+import store from "../reduxStore/reduxStore";
+import { getHotels, setHotels } from "../features/hotels/hotelSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { useLoaderData } from "react-router-dom";
 const Home = () => {
-  const data = useLoaderData();
-  const [hotels, setHotels] = useState(() => data || []);
-  if (!hotels) {
+  const hotels = useSelector(getHotels);
+  const allHotels = useLoaderData();
+  const dispatch = useDispatch();
+  if (hotels.length === 0) {
     return (
       <p className="text-md m-4 flex font-medium text-stone-500">
         No Hotels Found
@@ -14,12 +17,12 @@ const Home = () => {
     );
   }
   const handleSetHotels = (hotels) => {
-    setHotels(hotels);
+    dispatch(setHotels(hotels));
   };
   return (
     <div>
-      <SearchBar handleSetHotels={handleSetHotels} allHotels={data} />
-      <div className="mx-3 grid-cols-2 sm:mx-auto sm:flex sm:flex-wrap sm:justify-center md:mb-6 md:grid-cols-4 md:justify-center lg:mx-14 lg:mb-10">
+      <SearchBar handleSetHotels={handleSetHotels} allHotels={allHotels} />
+      <div className="mx-3 mb-6 grid-cols-2 sm:mx-auto sm:flex sm:flex-wrap sm:justify-center md:mb-6 md:grid-cols-4 md:justify-center lg:mx-14 lg:mb-10">
         {hotels.map((item) => (
           <HotelCard key={item._id} hotel={item} />
         ))}
@@ -31,6 +34,7 @@ const Home = () => {
 export async function loader() {
   const data = await getAllHotels();
   // console.log(data);
+  store.dispatch(setHotels(data.data));
   return data.data;
 }
 

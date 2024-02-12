@@ -1,6 +1,4 @@
 import { useState } from "react";
-// import DatePicker from "react-datepicker";
-
 import "react-datepicker/dist/react-datepicker.css";
 import { getSearchHotels } from "../services/hotel.services";
 import { useDispatch } from "react-redux";

@@ -60,3 +60,22 @@ export const createMyBooking = async (headers, hotelId, body) => {
     return null;
   }
 };
+
+////////CANCEL MY BOOKING
+export const cancelMyBooking = async (headers, hotelId, bookingId) => {
+  try {
+    const response = await fetch(
+      `${base_url}/bookings/${hotelId}/${bookingId}`,
+      {
+        method: "PUT",
+        headers: {
+          ...headers,
+        },
+      },
+    );
+    return response;
+  } catch (error) {
+    console.error(error.message);
+    return null;
+  }
+};

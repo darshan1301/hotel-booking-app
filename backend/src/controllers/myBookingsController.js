@@ -2,12 +2,12 @@ const Booking = require("../models/bookingModel");
 const Hotel = require("../models/hotelModel");
 require("dotenv").config();
 const Stripe = require("stripe");
-
+const { v4: uuidv4 } = require("uuid");
 const stripe = new Stripe(process.env.STRIPE_SK.toString());
 
 const getMyBookings = async (req, res) => {
   const { userId, email } = req.user;
-  console.log("GET My BOOKINGS", userId);
+  // console.log("GET My BOOKINGS", userId);
   try {
     const hotels = await Hotel.find({
       bookings: { $elemMatch: { email: `${email}` } },
@@ -15,7 +15,7 @@ const getMyBookings = async (req, res) => {
 
     const results = hotels.map((hotel) => {
       const userBookings = hotel.bookings.filter(
-        (booking) => booking.userId === userId // Use userId from the function parameter
+        (booking) => booking.userId === userId
       );
 
       const hotelWithUserBookings = {
@@ -25,7 +25,7 @@ const getMyBookings = async (req, res) => {
 
       return hotelWithUserBookings;
     });
-    console.log(results.booking);
+    // console.log(results);
 
     res.status(200).json(results);
   } catch (error) {
@@ -124,7 +124,11 @@ const addMyBooking = async (req, res) => {
       return res.status(400).json({ message: "Payment intent failed." });
     }
 
+    // Generate a unique identifier
+    const uniqueId = uuidv4();
+
     const newBooking = {
+      _id: uniqueId,
       userId: userId,
       firstName: req.body.firstName,
       lastName: req.body.lastName,
@@ -150,8 +154,42 @@ const addMyBooking = async (req, res) => {
   }
 };
 
+const cancelBooking = async (req, res) => {
+  const hotelId = req.params.hotelId;
+  const bookingId = req.params.bookingId;
+  // console.log("CANCEL BOOKING", hotelId, bookingId);
+  try {
+    // Check if the hotel exists
+    const hotel = await Hotel.findById(hotelId);
+    if (!hotel) {
+      return res.status(404).json({ message: "Hotel not found" });
+    }
+
+    // Check if the booking exists in the hotel's bookings array
+    const isBookingInHotel = hotel.bookings.some(
+      (booking) => booking._id === bookingId
+    );
+    if (!isBookingInHotel) {
+      return res
+        .status(404)
+        .json({ message: "Booking not found in the hotel" });
+    }
+    const updatedHotel = await Hotel.findByIdAndUpdate(
+      hotelId,
+      { $pull: { bookings: { _id: bookingId.toString() } } },
+      { new: true }
+    );
+
+    return res.status(200).json({ message: "Booking removed from the hotel" });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: "Internal Server Error" });
+  }
+};
+
 module.exports = {
   getMyBookings,
   addMyBooking,
   createPaymentIntent,
+  cancelBooking,
 };

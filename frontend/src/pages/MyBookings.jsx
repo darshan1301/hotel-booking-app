@@ -1,12 +1,41 @@
-import { useLoaderData } from "react-router-dom";
-import { getMyBookings } from "../services/booking.services";
+import { cancelMyBooking, getMyBookings } from "../services/booking.services";
 import BackBtn from "../ui/BackBtn";
 import HeaderBar from "../ui/HeaderBar";
+import { useState } from "react";
+import { useAuth } from "../contexts/AuthContext";
+import store from "../reduxStore/reduxStore";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  cancelBooking,
+  clearBookings,
+  getBookings,
+  setBookings,
+} from "../features/myBookings/myBookingsSlice";
 
 const MyBookings = () => {
-  const myBookings = useLoaderData();
+  const myBookings = useSelector(getBookings);
+  // console.log(myBookings);
+  const dispatch = useDispatch();
+  const [isLoading, setIsLoading] = useState(false);
+  const { headers } = useAuth();
 
-  if (!myBookings)
+  const onCancelReservation = async (hotelId, bookingId) => {
+    setIsLoading(true);
+    try {
+      const res = await cancelMyBooking(headers, hotelId, bookingId);
+      if (res.ok) {
+        // const data = await res.json();
+        dispatch(cancelBooking(bookingId));
+        // console.log(data);
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  if (!myBookings.length)
     return (
       <div className="m-10 flex justify-center">
         <p>No Bookings Found!</p>
@@ -17,7 +46,7 @@ const MyBookings = () => {
     <div className="space-y-4 md:mx-10 lg:mx-20">
       <HeaderBar>
         <BackBtn to={-1} />
-        <h1 className="px-4 text-2xl font-bold uppercase text-stone-500">
+        <h1 className="px-4 text-2xl font-medium uppercase text-stone-500">
           My Bookings
         </h1>
       </HeaderBar>
@@ -39,21 +68,36 @@ const MyBookings = () => {
                 {hotel.city}, {hotel.country}
               </p>
             </div>
-            <p className="uppercase text-stone-500">Your Bookings</p>
+            <p className="divide uppercase text-stone-500">Your Bookings</p>
             {hotel.bookings.map((booking, index) => (
-              <div key={index}>
+              <div
+                key={index}
+                className="flex items-center  justify-between rounded-lg border-b border-red-200 bg-stone-50 px-3 py-3"
+              >
                 <div>
-                  <span className="mr-2 font-bold">Dates: </span>
-                  <span>
-                    {new Date(booking.checkIn).toDateString()} -
-                    {new Date(booking.checkOut).toDateString()}
-                  </span>
+                  <div>
+                    <span className="mr-2 font-bold">Dates: </span>
+                    <span>
+                      {new Date(booking.checkIn).toDateString()} -
+                      {new Date(booking.checkOut).toDateString()}
+                    </span>
+                  </div>
+                  <div>
+                    <span className="mr-2 font-bold">Guests:</span>
+                    <span>
+                      {booking.adultCount} adults, {booking.childCount} children
+                    </span>
+                  </div>
                 </div>
                 <div>
-                  <span className="mr-2 font-bold">Guests:</span>
-                  <span>
-                    {booking.adultCount} adults, {booking.childCount} children
-                  </span>
+                  <button
+                    disabled={isLoading}
+                    type="button"
+                    onClick={() => onCancelReservation(hotel._id, booking._id)}
+                    className="rounded-full bg-red-500 px-3 py-2 text-xs uppercase text-stone-50"
+                  >
+                    {isLoading ? "...Canceling" : "Cancel"}
+                  </button>
                 </div>
               </div>
             ))}
@@ -71,7 +115,11 @@ export const loader = async () => {
   };
   const res = await getMyBookings(headers);
   // console.log(res);
-  if (res.length > 0) return res;
+  if (res.length > 0) {
+    store.dispatch(setBookings(res));
+    return res;
+  }
+  store.dispatch(clearBookings());
   return null;
 };
 

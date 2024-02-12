@@ -27,6 +27,7 @@ const hotelSlice = createSlice({
       // Update the state directly
       state.hotels = updatedHotels;
     },
+
     clearHotels(state) {
       state.hotels = [];
     },

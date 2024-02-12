@@ -12,7 +12,9 @@ const getHotels = async (req, res) => {
     return res.status(200).json({ data: JSON.parse(nodeCache.get("hotels")) });
   } else {
     try {
-      const data = await Hotel.find().sort({ lastUpdated: -1 });
+      const data = await Hotel.find()
+        .sort({ lastUpdated: -1 })
+        .select("-bookings");
       nodeCache.set("hotels", JSON.stringify(data));
       res.status(200).json({ data });
     } catch (error) {
@@ -25,7 +27,7 @@ const getHotels = async (req, res) => {
 const getHotelDetails = async (req, res) => {
   const hotelId = req.params.hotelId;
   try {
-    const data = await Hotel.findById(hotelId);
+    const data = await Hotel.findById(hotelId).select("-bookings");
     res.status(200).json(data);
   } catch (error) {
     console.log(error);
@@ -55,7 +57,9 @@ const getSearchHotels = async (req, res) => {
         sortingOptions = null;
     }
 
-    const data = await Hotel.find(query).sort(sortingOptions);
+    const data = await Hotel.find(query)
+      .sort(sortingOptions)
+      .select("-bookings");
     // console.log(data);
     res.status(200).json({ data });
   } catch (error) {
