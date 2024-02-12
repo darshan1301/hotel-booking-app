@@ -1,5 +1,4 @@
 import { useState } from "react";
-import "react-datepicker/dist/react-datepicker.css";
 import { getSearchHotels } from "../services/hotel.services";
 import { useDispatch } from "react-redux";
 import { setHotels } from "../features/hotels/hotelSlice";
