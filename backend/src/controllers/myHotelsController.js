@@ -60,6 +60,7 @@ const updateMyHotel = async (req, res) => {
   const hotelId = req.params.hotelId;
   // console.log(req.body);
   let updatedHotel = {};
+  // console.log(req.files);
   if (req.files) {
     const newImageUrls = await Promise.all(
       req.files.map(async (file) => {
@@ -106,7 +107,7 @@ const updateMyHotel = async (req, res) => {
     });
 
     if (!hotel) {
-      console.log("Hotel not found.");
+      // console.log("Hotel not found.");
       return res.status(404).json({ message: "Hotel not found." });
     }
     nodeCache.del("hotels");
@@ -120,7 +121,7 @@ const updateMyHotel = async (req, res) => {
 
 const deleteMyHotel = async (req, res) => {
   const hotelId = req.params.hotelId;
-  console.log("hotelid", hotelId);
+  // console.log("hotelid", hotelId);
   try {
     const hotel = await Hotel.findById(hotelId);
     if (!hotel) {

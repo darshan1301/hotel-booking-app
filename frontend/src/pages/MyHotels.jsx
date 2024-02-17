@@ -15,9 +15,7 @@ const MyHotels = () => {
   const { hotels } = useLoaderData();
   const { headers } = useAuth();
   const { displayPopupMessage } = usePopupMessage();
-  const [pageData, setPageData] = useState(() =>
-    hotels.length === 0 ? [] : hotels,
-  );
+  const [pageData, setPageData] = useState(() => hotels);
 
   const handleEditHotel = (hotel) => {
     manageHotelDispatch({ type: "editHotel", payload: hotel });
@@ -41,12 +39,12 @@ const MyHotels = () => {
   };
 
   return (
-    <div className="md:mx-10 lg:mx-20">
+    <div className="sm:mx-4 md:mx-10 lg:mx-20">
       <HeaderBar>
         <BackBtn to={-1} />
         <AddHotelBtn />
       </HeaderBar>
-      {hotels.length === 0 ? (
+      {!hotels ? (
         <p className="m-4">No Hotels Found!</p>
       ) : (
         <div className="grid grid-cols-1 gap-6 md:gap-8">

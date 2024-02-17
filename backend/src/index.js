@@ -7,6 +7,7 @@ const hotelRouter = require("./routes/hotelRoute");
 const bookingRouter = require("./routes/bookingRoute");
 const myHotelRouter = require("./routes/myHotelRoute");
 const { connectMongoDB } = require("./db");
+const fs = require("fs");
 
 const app = express();
 app.use(cors());
@@ -14,6 +15,13 @@ app.use(express.json({ limit: "50mb" }));
 
 const PORT = process.env.PORT || 8000;
 connectMongoDB();
+
+const uploadDir = "src/my-uploads";
+
+// Ensure the destination folder exists
+if (!fs.existsSync(uploadDir)) {
+  fs.mkdirSync(uploadDir);
+}
 
 //// ROUTES
 
@@ -23,8 +31,8 @@ app.use("/myhotels", myHotelRouter);
 app.use("/bookings", bookingRouter);
 
 app.get("/", (req, res) => {
-  res.send("hello sir, api is healthy");
-  console.log("HEALTHY");
+  res.send("hello sir, api is working");
+  // console.log("HEALTHY");
 });
 
 app.listen(PORT, () => {

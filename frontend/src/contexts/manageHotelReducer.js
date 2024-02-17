@@ -40,7 +40,7 @@ export function manageHotelReducer(state, action) {
       const newImages = state.imageUrls.filter(
         (item) => item !== action.payload,
       );
-      console.log("New Images:", newImages);
+      // console.log("New Images:", newImages);
 
       return { ...state, imageUrls: newImages };
     }

@@ -43,7 +43,7 @@ const User = () => {
       <div className="w-full max-w-md rounded-lg bg-white p-8 shadow-md">
         <h1 className="mb-6 text-2xl font-semibold">My Profile</h1>
         <div className="mb-4 flex items-center space-x-4">
-          <div className="h-12 w-12 overflow-hidden rounded-full">
+          <div className="h-12 w-12 overflow-hidden rounded-full md:h-24 md:w-24">
             {/* You can add a user avatar here */}
             <img
               src="https://res.cloudinary.com/hotel-booking-1301/image/upload/v1706812724/hotelImages/ncu5vk4lcqfuqhou8mah.jpg"

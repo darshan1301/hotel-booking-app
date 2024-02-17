@@ -3,7 +3,7 @@ const Hotel = require("../models/hotelModel");
 const checkHotelOwnership = async (req, res, next) => {
   const { hotelId } = req.params;
   const { userId } = req.user;
-  console.log(hotelId, userId);
+  // console.log(hotelId, userId);
 
   try {
     const hotel = await Hotel.findById(hotelId);
