@@ -3,7 +3,7 @@ const Hotel = require("./../models/hotelModel");
 const NodeCache = require("node-cache");
 
 const nodeCache = new NodeCache({
-  stdTTL: 60 * 60 * 24,
+  stdTTL: 60 * 2, ///60 * minutes
 });
 
 const getHotels = async (req, res) => {

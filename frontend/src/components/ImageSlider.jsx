@@ -10,7 +10,6 @@ const defaultImage = [
 
 const ImageSlider = ({ images = defaultImage, styles }) => {
   // If there's only one image, render it without using the slider
-  // console.log(images);
   if (images.length === 1) {
     return <img src={images[0]} alt="Single Image" className={styles} />;
   }
@@ -22,7 +21,7 @@ const ImageSlider = ({ images = defaultImage, styles }) => {
     autoplaySpeed: 2000,
     dots: true,
     infinite: true,
-    speed: 400,
+    speed: 200,
     slidesToShow: 1,
     slidesToScroll: 1,
   };

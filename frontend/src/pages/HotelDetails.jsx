@@ -16,14 +16,14 @@ const HotelDetails = () => {
           styles="h-72 w-full object-cover md:h-96 md:rounded-2xl lg:h-[30rem]"
         />
       </div>
-      <div className="px-4 pt-4 lg:mx-12 lg:flex-col ">
-        <div className="">
-          <p className="font-sans text-3xl font-medium text-stone-800">
+      <div className="grid grid-cols-1 px-4 pt-4 lg:mx-12 lg:grid-cols-2 lg:gap-4 lg:px-0 lg:pt-4 ">
+        <div className="lg:px-4">
+          <p className="font-sans text-3xl font-medium text-stone-500">
             {hotel.description}
           </p>
-          {/* <p className="font-sans text-xl font-normal text-stone-400">
-          ${hotel.pricePerNight} Per Night
-         </p> */}
+          <p className="my-2 rounded-md border border-red-400 px-2 py-2 font-sans text-xl font-light uppercase text-stone-500">
+            ${hotel.pricePerNight}/per Night
+          </p>
           <p className="py-1 font-sans text-base font-medium tracking-wide text-stone-800">
             {hotel.name}
           </p>

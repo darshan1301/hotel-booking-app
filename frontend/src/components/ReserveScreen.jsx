@@ -96,7 +96,7 @@ const ReserveScreen = ({ hotel }) => {
   };
 
   return (
-    <div className=" m-4 flex flex-col items-center justify-center space-y-2 divide-y rounded-lg border border-stone-400 py-4">
+    <div className=" m-4 flex flex-col items-center justify-center space-y-2 divide-y rounded-lg border border-stone-400 p-4 lg:m-2">
       {openCheckoutForm && (
         <Elements
           stripe={stripePromise}

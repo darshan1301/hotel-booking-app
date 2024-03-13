@@ -28,7 +28,7 @@ const userSignup = async (req, res) => {
     };
 
     const token = jwt.sign(tokenPayload, process.env.JWT_SECRET, {
-      expiresIn: "7d",
+      expiresIn: null,
     });
     console.log("signed in");
 
@@ -64,7 +64,7 @@ const userLogin = async (req, res) => {
     };
 
     const token = jwt.sign(tokenPayload, process.env.JWT_SECRET, {
-      expiresIn: "7d",
+      expiresIn: null,
     });
     console.log("Logged In");
 

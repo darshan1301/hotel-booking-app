@@ -9,9 +9,10 @@ const Home = () => {
   const hotels = useSelector(getHotels);
   const allHotels = useLoaderData();
   const dispatch = useDispatch();
+
   if (hotels.length === 0) {
     return (
-      <p className="text-md m-4 flex font-medium text-stone-500">
+      <p className="text-md m-4 flex font-medium text-stone-500 md:mx-14">
         No Hotels Found
       </p>
     );
@@ -33,7 +34,7 @@ const Home = () => {
 
 export async function loader() {
   const data = await getAllHotels();
-  // console.log(data);
+  // console.log(data.data);
   store.dispatch(setHotels(data.data));
   return data.data;
 }

@@ -11,8 +11,8 @@ const EditHotel = () => {
     return updateMyHotel(hotelId, formData, headers);
   }
   return (
-    <div>
-      <h1 className="my-4 px-4 text-2xl font-bold uppercase text-stone-700">
+    <div className="lg:mx-28">
+      <h1 className="my-4 px-4 text-2xl font-bold uppercase text-stone-700 ">
         Edit Hotel
       </h1>
 
