@@ -34,7 +34,7 @@ const Home = () => {
 
 export async function loader() {
   const data = await getAllHotels();
-  // console.log(data.data);
+  console.log(data.data);
   store.dispatch(setHotels(data.data));
   return data.data;
 }
